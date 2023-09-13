@@ -90,9 +90,6 @@ int main(int argc, char const *argv[])
 			}
 			
 			
-			printf("b[3]: %lf\n",b[3]);
-			printf("\narreglo[3][3]: %lf\n",arreglo[3][3]);
-			
 			if(det==0){
 				printf("\nMatriz singular");
 				return 1;
