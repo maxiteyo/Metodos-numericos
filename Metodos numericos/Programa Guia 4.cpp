@@ -12,8 +12,8 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
     
-    int i=0,j=0,opcion=0,suma=0,iteracion=0;
-    double b[FIL]={0},x0[FIL]={0},xv[FIL]={0},e=1,tol=0;
+    int i=0,j=0,opcion=0,iteracion=0;
+    double b[FIL]={0},x0[FIL]={0},xv[FIL]={0},e=1,tol=0,suma=0;
 
     FILE *fp;
     char ch;
@@ -96,13 +96,13 @@ int main(int argc, char const *argv[])
             for(i=0;i<FIL;i++){
 
                 suma=0;
-                for(j=0;j<FIL;j++){
+                for(j=0;j<COL;j++){
 
                     if(j!=i){
                         suma=suma+fabs(arreglo[i][j]);
                     }
                 }
-                if(fabs(arreglo[i][j]) < suma){//no seria arreglo[i][i]?
+                if(fabs(arreglo[i][i]) < suma){
                     printf("\nLa matriz no es diagonalmente dominante");
                 }
                 if(fabs(arreglo[i][i])==0){
@@ -116,30 +116,21 @@ int main(int argc, char const *argv[])
             do
             {
                 iteracion++;
+                double error=0;
                 for(i=0;i<FIL;i++){
                     suma=0;
-                    for(j=0;j<FIL;j++){
+                    for(j=0;j<COL;j++){
                         if(j != i){
                             suma=suma+arreglo[i][j]*xv[j];
                         }
                     }
                     x0[i]=(b[i]-suma)/arreglo[i][i];
-                }//calculo de xnuevo (x0)
-
-                suma=0;
-
-                for(i=0;i<FIL;i++){
-                    suma=suma+pow((x0[i]-xv[i]),2);
-                }
-
-                e=sqrt(suma);
-
-                for(i=0;i<FIL;i++){
-
+                    error=error+pow((x0[i]-xv[i]),2);
                     xv[i]=x0[i];
-
-                }
-            } while (e > tol || iteracion < 10000);
+                }//calculo de xnuevo (x0)
+                e=sqrt(error);
+                
+            } while (e > tol && iteracion < 10000 );
             
             for(i=0;i<FIL;i++){
 
@@ -163,13 +154,13 @@ int main(int argc, char const *argv[])
             for(i=0;i<FIL;i++){
 
                 suma=0;
-                for(j=0;j<FIL;j++){
+                for(j=0;j<COL;j++){
 
                     if(j!=i){
                         suma=suma+fabs(arreglo[i][j]);
                     }
                 }
-                if(fabs(arreglo[i][j]) < suma){//no seria arreglo[i][i]?
+                if(fabs(arreglo[i][i]) < suma){
                     printf("\nLa matriz no es diagonalmente dominante");
                 }
                 if(fabs(arreglo[i][i])==0){
@@ -177,35 +168,45 @@ int main(int argc, char const *argv[])
                     return 1;
                 }
             }//verificacion de posible convergencia
+            
+            iteracion=0;
 
-
-            for(i=0;i<FIL;i++){
-                suma=0;
-                if(i==1){
-                    for(j=1;j<FIL;j++){
+            do
+            {
+                iteracion++;
+                double error=0;
+                for(i=0;i<FIL;i++){
+                    suma=0;
+                if(i==0){
+                    for(j=1;j<COL;j++){
                         suma=suma+arreglo[i][j]*xv[j];
                     }
                     x0[i]=(b[i]-suma)/(arreglo[i][i]);
                 }else{
-                    for(j=0;j<i-1;j++){
+                    for(j=0;j<i;j++){
                         suma=suma+arreglo[i][j]*x0[j];
                     }
-                    for(j=i+1;j<FIL;j++){
+                    for(j=i+1;j<COL;j++){
                         suma=suma+arreglo[i][j]*xv[j];
                     }
 
                     x0[i]=(b[i]-suma)/(arreglo[i][i]);
-
-
+                
+                    error=error+pow((x0[i]-xv[i]),2);
+                    xv[i]=x0[i];
+                }//calculo de xnuevo (x0)
                 }
-            }
+                e=sqrt(error);
+                
+            } while (e > tol && iteracion < 10000 );
+            
             for(i=0;i<FIL;i++){
 
                 printf("\nX0[%d]: %lf",i+1,x0[i]);
 
             }
-            //printf("\nError: %lf",e);
-            //printf("\nIteraciones: %d",iteracion);
+            printf("\nError: %lf",e);
+            printf("\nIteraciones: %d",iteracion);
 
 
             break;
@@ -221,3 +222,4 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
+
