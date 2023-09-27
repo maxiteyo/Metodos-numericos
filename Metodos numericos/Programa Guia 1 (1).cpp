@@ -28,8 +28,7 @@ int main(int argc, char *argv[]) {
 		printf("1- Metodo de biseccion");
 		printf("\n2- Metodo de falsa posicion");
 		printf("\n3- Metodo de falsa posicion 2.0");
-		printf("\n4- Merodo de Punto fijo");
-		printf("\n5- Salir");
+		printf("\n4- Salir");
 		printf("\nOpcion: ");
 		scanf("%d",&opcion);
 	
@@ -115,7 +114,7 @@ double f(double x){
 	
 	double funcion=0;
 	
-	funcion= pow(x,10)-1;
+	funcion= 0.117*pow(x,3)-1.35*pow(x,2)+4.23*x-3;
 	//-2+7*x-5*pow(x,2)+6*pow(x,3);
 	//log(x)+pow(2.71828,sin(x))-x;
 	return funcion;

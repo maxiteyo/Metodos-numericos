@@ -162,6 +162,17 @@ int main(int argc, char const *argv[])
 				
 			}
 			
+			printf("\n--Matriz resuelta--\n");
+					
+				for(i=0;i<filas;i++)
+			{
+				for(j=0;j<columnas;j++)
+				{
+					printf("%lf ",arreglo[i][j]);
+				}
+				printf("\n");
+			}
+
 			for(i=0;i<FIL;i++){
 				printf("\nx[%d]= %lf",i,x[i]);
 			}

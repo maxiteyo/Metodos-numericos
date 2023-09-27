@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
 		} while (error > tolerancia && iteracion < 10000);
 		
 		printf("\nRaiz: %lf",x0);
-		printf("\nError: %lf",error);
+		printf("\nError: %.12lf",error);
 		printf("\nIteraciones: %d",iteracion);
 
 	break;
@@ -116,7 +116,8 @@ double g(double x){//acordarse de que es g, osea habira que restarle x
 	
 	double funcion=0;
 	
-	funcion=cos(sin(x));
+	funcion=(-sin(x)+pow(2.71,x))/3;
+	//cos(sin(x));
 	//pow(x,x-cos(x));
 	//cos(sin(x));(Preguntar si no cumple con el criterio xq no tiene raiz)
     //pow(x,5)-3*pow(x,3)-2*pow(x,2)+2;(Dudoso lo que da, PREGUNTAR)
@@ -130,7 +131,8 @@ double f(double x){
 
 	double funcion=0;
 
-	funcion=cos(sin(x))-x;
+	funcion=3*x+sin(x)-pow(2.71,x);
+	//cos(sin(x))-x;
 	//pow(x,x-cos(x));(raiz: nan)
 	//cos(sin(x));(derivada muy pequeña)
 	//pow(x,5)-3*pow(x,3)-2*pow(x,2)+2;(derivada muy pequeña)
@@ -141,7 +143,9 @@ double f(double x){
 
 double fprima(double x){
 
-	double funcion=3*pow(x,2)-2;
+	double funcion=(f(x+0.01)-f(x-0.01))/(2*0.01);
+	
+	//funcion=3*pow(x,2)-2;
 
 	//funcion=fabs((f(x+0.01)-f(x))/0.01);
 
