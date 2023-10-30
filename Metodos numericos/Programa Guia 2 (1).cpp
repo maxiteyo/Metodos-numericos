@@ -51,6 +51,10 @@ int main(int argc, char *argv[]) {
                 error=fabs(xviejo-x0);
                 xviejo=x0;
             }
+			printf("\niter: %d ",iteracion);
+			printf("\nx0: %lf",x0);
+			printf("\nerror: %.12lf",error);
+			printf("\n");
         } while (error > tolerancia);
          
         printf("\nX0: %lf",x0);
@@ -116,7 +120,7 @@ double g(double x){//acordarse de que es g, osea habira que restarle x
 	
 	double funcion=0;
 	
-	funcion=(-sin(x)+pow(2.71,x))/3;
+	funcion=sqrt((x+5)/2);
 	//cos(sin(x));
 	//pow(x,x-cos(x));
 	//cos(sin(x));(Preguntar si no cumple con el criterio xq no tiene raiz)
@@ -131,7 +135,9 @@ double f(double x){
 
 	double funcion=0;
 
-	funcion=3*x+sin(x)-pow(2.71,x);
+	funcion=sqrt((x+5)/2);
+	//pow(x,x)-5;
+	//3*x+sin(x)-pow(2.71,x);
 	//cos(sin(x))-x;
 	//pow(x,x-cos(x));(raiz: nan)
 	//cos(sin(x));(derivada muy pequeña)
@@ -143,7 +149,9 @@ double f(double x){
 
 double fprima(double x){
 
-	double funcion=(f(x+0.01)-f(x-0.01))/(2*0.01);
+	double funcion=fabs((f(x+0.01)-f(x))/0.01);
+	
+	//(f(x+0.5)-f(x-0.5))/(2*0.5);
 	
 	//funcion=3*pow(x,2)-2;
 

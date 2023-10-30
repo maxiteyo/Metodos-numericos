@@ -6,8 +6,8 @@
 
 using namespace std;
 
-#define FIL 3 //cambiar para ingresar los "b"
-#define COL 3
+#define FIL 2 //cambiar para ingresar los "b"
+#define COL 2
 
 int main(int argc, char const *argv[])
 {
@@ -129,7 +129,9 @@ int main(int argc, char const *argv[])
                     xv[i]=x0[i];
                 }//calculo de xnuevo (x0)
                 e=sqrt(error);
-                
+                printf("\niter %d",iteracion);
+                printf("\nerror: %.12lf",e);
+                printf("\n");
             } while (e > tol && iteracion < 10000 );
             
             for(i=0;i<FIL;i++){
@@ -137,7 +139,7 @@ int main(int argc, char const *argv[])
                 printf("\nX0[%d]: %lf",i+1,x0[i]);
 
             }
-            printf("\nError: %lf",e);
+            printf("\nError: %.12lf",e);
             printf("\nIteraciones: %d",iteracion);
 
 
@@ -197,15 +199,28 @@ int main(int argc, char const *argv[])
                 }//calculo de xnuevo (x0)
                 }
                 e=sqrt(error);
-                
+                printf("\niter %d",iteracion);
+                printf("\nerror: %.12lf",e);
+                printf("\n");
             } while (e > tol && iteracion < 10000 );
             
+            printf("\n--Matriz resuelta--\n");
+					
+				for(i=0;i<filas;i++)
+			{
+				for(j=0;j<columnas;j++)
+				{
+					printf("%lf ",arreglo[i][j]);
+				}
+				printf("\n");
+			} 
+
             for(i=0;i<FIL;i++){
 
                 printf("\nX0[%d]: %lf",i+1,x0[i]);
 
             }
-            printf("\nError: %lf",e);
+            printf("\nError: %.12lf",e);
             printf("\nIteraciones: %d",iteracion);
 
 

@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 			}
 			iteracion++;
 			error= (b-a)/2;
-			printf("\t%d\t\t%lf\n",iteracion,error);
+			printf("\t%d\t\t%.12lf\n",iteracion,error);
 		} while(error > tolerancia);
 		
 		printf("\nLa raiz es: %lf",c);
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 			}
 			iteracion++;
 			error= (b-a)/2;
-			printf("\t%d\t\t%lf\n",iteracion,error);
+			printf("\t%d\t\t%.12lf\n",iteracion,error);
 		} while(error > tolerancia);
 		
 		printf("\nLa raiz es: %lf",c);
@@ -100,10 +100,11 @@ int main(int argc, char *argv[]) {
 			error= fabs((c-cvieja)/c);
 			cvieja=c;
 			iteracion++;
-			printf("\t%d\t\t%lf\n",iteracion,error);
+			printf("\t%d\t\t%.12lf\n",iteracion,error);
 		} while(error > tolerancia);
 		
 		printf("\nLa raiz es: %lf",c);
+		printf("\nEl error es: %.12lf",error);
 		printf("\nNumero de iteraciones: %d",iteracion);
 		break;
 	}
@@ -114,7 +115,8 @@ double f(double x){
 	
 	double funcion=0;
 	
-	funcion= 0.117*pow(x,3)-1.35*pow(x,2)+4.23*x-3;
+	funcion= -0.952854-0.206982*x+2.12295*pow(x,2);
+	//0.117*pow(x,3)-1.35*pow(x,2)+4.23*x-3;
 	//-2+7*x-5*pow(x,2)+6*pow(x,3);
 	//log(x)+pow(2.71828,sin(x))-x;
 	return funcion;
